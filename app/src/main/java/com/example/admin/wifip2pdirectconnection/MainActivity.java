@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
     private IntentFilter intentFilter;
     private boolean isWifiP2pEnabled = false;
     private boolean retryChannel = false;
-    private WifiPeerListAdapter wifiPeerListAdapter;
+   // private WifiPeerListAdapter wifiPeerListAdapter;
     private WifiP2pDnsSdServiceRequest serviceRequest = null;
 
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();

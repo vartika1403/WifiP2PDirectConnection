@@ -7,7 +7,10 @@ import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,14 @@ class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
 
     private WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
         @Override
         public void onPeersAvailable(WifiP2pDeviceList peerList) {
                 Log.i(LOG_TAG, "the list is, " + peerList.getDeviceList());
+            if (!peerList.getDeviceList().isEmpty()) {
+                Toast.makeText(activity, "peer device connected"
+                        + peerList.getDeviceList().iterator().next(), Toast.LENGTH_LONG).show();
+            }
         }
     };
 
